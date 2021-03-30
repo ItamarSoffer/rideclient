@@ -5,6 +5,7 @@ import {UserOutlined, PlusOutlined, UnorderedListOutlined} from '@ant-design/ico
 import "./HomePage.css"
 import {withRouter} from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import ThemeSwitch from "../Components/ThemeSwitch/ThemeSwitch";
 
 
 const { Sider, Content, Footer, Header } = Layout;
@@ -51,6 +52,12 @@ function SideMenuPage() {
                         >
                             כל הטרמפים
                         </Menu.Item>
+                                        {/* DARK MODE SWITCH*/}
+                <div style={{display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center', width: '100%'}}>
+                    <ThemeSwitch/>
+                </div>
                     </Menu>
                 </Sider>)
 
