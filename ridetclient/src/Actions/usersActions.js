@@ -15,7 +15,7 @@ export const loginAction = (username, password) => {
                     return dispatch({
                         type: "LOGIN",
                         payload: true,
-                        jwtToken: response.data
+                        jwtToken: response.data.token
                     })
                 }
             })
