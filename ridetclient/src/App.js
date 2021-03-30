@@ -2,7 +2,6 @@ import './App.css';
 import AppRouter from './Structure/AppRouter'
 import React from "react";
 import 'antd/dist/antd.css';
-import {checkJwt} from "./Actions/jwtActions";
 import {connect} from 'react-redux';
 import {ThemeSwitcherProvider} from "react-css-theme-switcher";
 
