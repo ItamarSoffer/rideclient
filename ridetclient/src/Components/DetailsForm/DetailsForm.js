@@ -2,6 +2,9 @@ import React, {useState} from 'react'
 import {Button, Form, Input, message, Radio, Select} from "antd";
 import {Option} from "antd/es/mentions";
 import CitySelect from "../loginForm/CitySelect/CitySelect";
+import { connect } from 'react-redux';
+
+import {apiSignUp} from "../../Actions/apiActions";
 import {Header} from "antd/es/layout/layout";
 
 
@@ -9,14 +12,14 @@ const data = {
     name: "ענבר",
     phoneNumber: "0546801485",
     defaultDestination: "קדימה",
-    platform: ["lync", "phone"],
+    platform: "lync",
     carColor: "אדום",
     carCompany: "Toyota",
     carSeats: 3
 }
 
 
-function DetailsForm() {
+function DetailsForm(props) {
     const [city, setCityId] = useState(data.defaultDestination);
 
     const formItemLayout = {
@@ -24,10 +27,23 @@ function DetailsForm() {
     };
 
     const onFinish = (details) => {
-        details["default-destination"] = city;
-        message.success("עודכן בהצלחה!")
+        console.log(JSON.stringify(details));
+
+        apiSignUp(props.jwtToken, details.car_company, details.car_color,
+            details.car_seats, details.platform, details.platform_info, city)
+        .then((response) => {
+                if (response.status ===! 200){
+                    message.warning(response.data)
+                }
+                else if (response.status === 200){
+                    message.success(response.data.message, 1.5)
+                }
+        });
+        // details["default-destination"] = city;
+        // message.success("עודכן בהצלחה!")
         // TODO: send to backend
-    }
+
+    };
 
     const handleCityChange = value => {
         setCityId(value);
@@ -45,11 +61,11 @@ function DetailsForm() {
                 onFinish={onFinish}
                 initialValues={{
                     'name': data.name,
-                    'phone-number': data.phoneNumber,
+                    'phone_number': data.phoneNumber,
                     'platform': data.platform,
-                    'car-color': data.carColor,
-                    'car-company': data.carCompany,
-                    'car-seats': data.carSeats,
+                    'car_color': data.carColor,
+                    'car_company': data.carCompany,
+                    'car_seats': data.carSeats,
                 }}
             >
                 <Form.Item
@@ -61,7 +77,7 @@ function DetailsForm() {
                 </Form.Item>
                 <Form.Item
                     {...formItemLayout}
-                    name="phone-number"
+                    name="phone_number"
                     label="טלפון"
                 >
                     <Input style={{width: '100%'}}/>
@@ -70,9 +86,8 @@ function DetailsForm() {
                     {...formItemLayout}
                     name="platform"
                     label="תשתית תקשורת מועדפת"
-                    rules={[{type: "array"}]}
                 >
-                    <Select mode="multiple" placeholder="בחר">
+                    <Select placeholder="בחר">
                         <Option value="lync">לינק</Option>
                         <Option value="phone">טלפון</Option>
                         <Option value="mail">מייל</Option>
@@ -88,21 +103,21 @@ function DetailsForm() {
                 </Form.Item>
                 <Form.Item
                     {...formItemLayout}
-                    name="car-color"
+                    name="car_color"
                     label="צבע"
                 >
                     <Input style={{width: '100%'}}/>
                 </Form.Item>
                 <Form.Item
                     {...formItemLayout}
-                    name="car-company"
+                    name="car_company"
                     label="חברה"
                 >
                     <Input style={{width: '100%'}}/>
                 </Form.Item>
                 <Form.Item
                     {...formItemLayout}
-                    name="car-seats"
+                    name="car_seats"
                     label="כמות מקומות ברכב"
                 >
                     <Radio.Group>
@@ -121,4 +136,12 @@ function DetailsForm() {
     )
 }
 
-export default DetailsForm
+const mapStateToProps = state => {
+    return {
+        jwtToken: state.usersReducer.jwtToken,
+
+    }
+};
+
+export default connect(mapStateToProps, null)(DetailsForm);
+

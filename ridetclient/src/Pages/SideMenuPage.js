@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import {logoutAction} from "../Actions/usersActions";
 
 
-const { Sider,  Header } = Layout;
+const { Sider,   } = Layout;
 
 
 function SideMenuPage(props) {
@@ -38,7 +38,6 @@ function SideMenuPage(props) {
         >
             <div className="logo"/>
             <Menu mode="inline" defaultSelectedKeys={['2']} selectedKeys={props.selectedTab ? props.selectedTab : null}>
-                <Header className="site-layout-sub-header-background" style={{padding: 0}}/>
                 <Menu.Item key="1"
                            icon={<UserOutlined/>}
                            onClick={() => {history.push({

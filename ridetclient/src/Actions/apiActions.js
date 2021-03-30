@@ -13,6 +13,7 @@ export const apiLogin = (username, password) => {
 };
 
 // DONE
+// TODO: with filters!!!!
 export const apiNewLift = (jwtToken, ride_time, seats, dst_city_id, comments) => {
     const ApiNewLiftUrl = backendAPI.concat(`/rides/?auth_token=${jwtToken}`);
     return axios.post(ApiNewLiftUrl, {
@@ -29,7 +30,7 @@ export const apiNewLift = (jwtToken, ride_time, seats, dst_city_id, comments) =>
 export const apiGetCities = () => {
     const getCitiesApi = backendAPI.concat(`/cities`);
     return axios.get(getCitiesApi)
-            .then((results) => (results.data.cities))
+        .then((results) => (results.data.cities))
 
 
 };
@@ -42,3 +43,21 @@ export const apiGetRides = () => {
 
 };
 
+
+// DONE
+export const apiSignUp = (jwtToken, car_company, car_color, car_seats, platform, platform_info, favorite_dst) => {
+    const ApiNewLiftUrl = backendAPI.concat(`/users/signup/?auth_token=${jwtToken}`);
+    return axios.post(ApiNewLiftUrl,
+        {"car_company": car_company,
+            "car_color": car_color,
+            "car_seats": car_seats,
+            "platform": platform,
+            "platform_info": platform_info,
+            "favorite_destination": favorite_dst
+        })
+
+};
+
+
+
+// TODO: add to lift
