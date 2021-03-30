@@ -66,7 +66,9 @@ export default function HomePage() {
     }, []);
 
     const loadData =() => {
-        apiGetRides().then((results) => (setRideInstances(results)) ).then(() => setIsLoaded(true));
+        apiGetRides()
+            .then((results) => (setRideInstances(results)) )
+            .then(() => setIsLoaded(true));
     }
 
     return (

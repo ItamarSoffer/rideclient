@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Typography, Modal, Button, Form, DatePicker, TimePicker, ConfigProvider, Input, Radio } from 'antd';
+import { Typography, Modal, Button, Form, DatePicker, TimePicker, ConfigProvider, Input, Radio, message } from 'antd';
 import CitySelect from "../loginForm/CitySelect/CitySelect";
 import {apiNewLift} from "../../Actions/apiActions";
+import { connect } from 'react-redux';
+import {checkJwt} from "../../Actions/jwtActions";
+import {withRouter} from "react-router";
 
 const {Text} = Typography;
 
@@ -9,7 +12,7 @@ const { TextArea } = Input;
 
 
 
-const NewLiftModal = () => {
+const NewLiftModal = (props) => {
     const formRef = React.createRef();
 
 
@@ -35,16 +38,24 @@ const NewLiftModal = () => {
     };
 
     const onFinish = values => {
-        apiNewLift("token", values.datetime.format('YYYY-MM-DD HH:mm'), rideSeats, cityId, values.comments);
 
-        console.log("FINISH", values);
-        console.log("Seats", rideSeats);
-
-        onReset();
-
-
-
+        // console.log(props.jwtToken, values.datetime.format('YYYY-MM-DD HH:mm'), rideSeats, cityId, values.comments);
+        apiNewLift(props.jwtToken, values.datetime.format('YYYY-MM-DD HH:mm'), rideSeats, cityId, values.comments)
+        .then((response) => {
+                if (response.status ===! 200){
+                    message.warning(response.data)
+                }
+                else if (response.status === 200){
+                    message.success(response.data.message, 1.5)
+                }
+            }).then(() => {
+            onReset();
+        });
     };
+        // onReset();
+
+
+
 
     const onFinishFailed = () => {
         console.log("ERROR")
@@ -52,7 +63,6 @@ const NewLiftModal = () => {
 
     const handleCityChange = value => {
         setcityId(value);
-        console.log("Selected city", value)
     };
 
     return (
@@ -152,4 +162,12 @@ const NewLiftModal = () => {
     );
 };
 
-export default NewLiftModal;
+const mapStateToProps = state => {
+    return {
+        jwtToken: state.usersReducer.jwtToken,
+
+    }
+};
+
+
+export default connect(mapStateToProps, null)(NewLiftModal);
