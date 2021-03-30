@@ -37,7 +37,8 @@ function SideMenuPage(props) {
             }}
         >
             <div className="logo"/>
-            <Menu mode="inline" defaultSelectedKeys={['2']}>
+            <Menu mode="inline" defaultSelectedKeys={['2']} selectedKeys={props.selectedTab ? props.selectedTab : null}>
+                <Header className="site-layout-sub-header-background" style={{padding: 0}}/>
                 <Menu.Item key="1"
                            icon={<UserOutlined/>}
                            onClick={() => {history.push({
@@ -46,8 +47,6 @@ function SideMenuPage(props) {
                 >
                     המידע שלי
                 </Menu.Item>
-
-
                 <Menu.Item key="2" icon={<UnorderedListOutlined/>}
                            onClick={() => {history.push({
                                pathname: `/`,});
@@ -72,7 +71,6 @@ function SideMenuPage(props) {
                     justifyContent: 'center', width: '100%'}}>
                     <ThemeSwitch/>
                 </div>
-
             </Menu>
         </Sider>)
 
