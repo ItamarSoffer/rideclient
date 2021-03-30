@@ -5,11 +5,12 @@ import 'antd/dist/antd.css';
 import {checkJwt} from "./Actions/jwtActions";
 import {connect} from 'react-redux';
 
-function App() {
+function App(props) {
+
 
         return (
                 <AppRouter
-                    isLogged={true}
+                    isLogged={checkJwt(props.jwtToken)}
                 />
 
         );
@@ -21,7 +22,5 @@ const mapStateToProps = state => {
         jwtToken: state.usersReducer.jwtToken,
     }
 };
-
-
 
 export default connect(mapStateToProps, null)(App);

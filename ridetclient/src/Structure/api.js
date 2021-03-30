@@ -1,7 +1,6 @@
 const server = 'localhost';
-const port = 5005;
-export const backendAPI= `http://${server}:${port}/api`;
-export const backendXlsxAPI= `http://${server}:${port}/api_upload`;
+const port = 8200;
+export const backendAPI= `http://${server}:${port}`;
 
 
 

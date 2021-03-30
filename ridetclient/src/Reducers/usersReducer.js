@@ -10,6 +10,7 @@ const initState = {
 
 const usersReducer = (state = initState, action) => {
 
+
     switch(action.type){
         case "LOGIN":
             window.localStorage.setItem('jwtToken',action.jwtToken);
