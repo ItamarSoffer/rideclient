@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Menu, notification, Tooltip} from "antd";
+import {Button, Menu, notification, Tooltip, Layout, ConfigProvider } from "antd";
 import RidesList from "../Components/RidesList";
-import Sider from "antd/es/layout/Sider";
-import Layout, {Content, Footer, Header} from "antd/es/layout/layout";
 import {UserOutlined, PlusOutlined, UnorderedListOutlined} from '@ant-design/icons';
 import "./HomePage.css"
+import SideMenuPage from './SideMenuPage'
+
+const { Sider, Content, Footer, Header } = Layout;
+
 
 async function getRides(page, searchParams = {}) {
     try {
@@ -36,34 +38,18 @@ export default function HomePage() {
 
     useEffect(() => {
         getRides(0).then(setRideInstances);
-    }, [])
+    }, []);
 
     return (
-        <>
-            <Layout>
-                <Sider
-                    breakpoint="lg"
-                    collapsedWidth="0"
-                    onBreakpoint={broken => {
-                        console.log(broken);
-                    }}
-                    onCollapse={(collapsed, type) => {
-                        console.log(collapsed, type);
-                    }}
-                >
-                    <div className="logo"/>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
-                        <Header className="site-layout-sub-header-background" style={{padding: 0}}/>
-                        <Menu.Item key="1" icon={<UserOutlined/>}>
-                            My Info
-                        </Menu.Item>
-                        <Menu.Item key="2" icon={<UnorderedListOutlined/>}>
-                            All Rides
-                        </Menu.Item>
-                    </Menu>
-                </Sider>
+        <ConfigProvider direction="rtl">
+
+            <Layout
+                style={{ minHeight: '100vh' }}
+
+            >
+               <SideMenuPage/>
                 <Layout>
-                    <Header className="site-layout-sub-header-background" style={{padding: 0}}/>
+                    {/*<Header className="site-layout-sub-header-background" style={{padding: 0}}/>*/}
                     <Content style={{margin: '24px 16px 0'}}>
                         <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
                             <RidesList
@@ -73,13 +59,14 @@ export default function HomePage() {
                             />
                         </div>
                     </Content>
+                    <Footer style={{textAlign: 'center'}}>Kakas C ©2021</Footer>
+
+                    <Button style={{float: "right", width: '150px'}} type="primary" shape="round" icon={<PlusOutlined/>} size={"large"}>
+                        New Ride
+                    </Button>
                 </Layout>
             </Layout>
-            <Footer style={{textAlign: 'center'}}>kakas C ©2021</Footer>
-            <Button style={{float: "right"}} type="primary" shape="round" icon={<PlusOutlined/>} size={"large"}>
-                New Ride
-            </Button>
-        </>
+        </ConfigProvider>
     )
 }
 
