@@ -5,10 +5,10 @@ import {
     Route,
 } from "react-router-dom";
 
-import LoginPage from "../Pages/LoginPage/LoginPage"
-import MyDetailsPage from "../Pages/MyDetailsPage/MyDetailsPage"
-import NewLiftPage from "../Pages/NewLiftPage/NewLiftPage"
-import HomePage from "../Pages/HomePage/HomePage"
+import LoginPage from "../Pages/LoginPage"
+import MyDetailsPage from "../Pages/MyDetailsPage"
+import NewLiftPage from "../Pages/NewLiftPage"
+import HomePage from "../Pages/HomePage"
 
 
 export default function AppRouter(props) {
