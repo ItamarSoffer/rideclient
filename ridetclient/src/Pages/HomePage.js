@@ -3,7 +3,9 @@ import {Button, notification, Layout, ConfigProvider } from "antd";
 import RidesList from "../Components/RidesList";
 import {PlusOutlined} from '@ant-design/icons';
 import "./HomePage.css"
-import SideMenuPage from './SideMenuPage'
+import SideMenuPage from './SideMenuPage';
+import RidesFilter from '../Components/FilterRides/RidesFilters'
+
 
 const { Content, Footer} = Layout;
 
@@ -52,6 +54,9 @@ export default function HomePage() {
                     {/*<Header className="site-layout-sub-header-background" style={{padding: 0}}/>*/}
                     <Content style={{margin: '24px 16px 0'}}>
                         <div style={{padding: 24, minHeight: 360}}>
+                            <RidesFilter/>
+                            <br/>
+                            <br/>
                             <RidesList
                                 loading={loading}
                                 handleLoadMore={loadRideInstances}

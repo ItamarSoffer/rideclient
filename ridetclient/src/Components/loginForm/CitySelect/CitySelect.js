@@ -26,6 +26,7 @@ const CitySelect = (props) =>{
     if (isFetched) {
         return (
             <Select
+                defaultValue={props.defaultValue}
                 showSearch
                 allowClear
                 placeholder={"עיר"}
