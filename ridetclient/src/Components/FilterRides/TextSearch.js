@@ -50,7 +50,7 @@ function TextSearch (){
                 allowClear
                 placeholder="חיפוש חופשי"
                 onSearch={onSearch}
-                style={{ width: 400 }}
+                style={{ width: 350 }}
                 defaultValue={defaultQueryValues}
             />
 

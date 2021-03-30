@@ -9,8 +9,6 @@ import URLSearchParams from "url-search-params";
 import CitySelect from "../loginForm/CitySelect/CitySelect";
 
 
-import {Form} from "antd";
-
 function TagsSearch (){
     let history = useHistory();
 

@@ -17,9 +17,6 @@ const CitySelect = (props) =>{
         apiGetCities().then(res => res.data)
             .then((results) => setData({cities: results.cities}))
             .then(() => setIsFetched(true))
-            // .then(res => console.log("RES", res))
-            // .then(res => setData({results: res.cities}))
-        // .then(results => function(results){setData(results); console.log(results)});
     }, []);
 
 

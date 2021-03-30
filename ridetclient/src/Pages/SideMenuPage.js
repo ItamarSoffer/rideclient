@@ -1,11 +1,12 @@
 import React from 'react';
 import {Menu, Layout } from "antd";
-import {UserOutlined, UnorderedListOutlined} from '@ant-design/icons';
+import {UserOutlined, UnorderedListOutlined, LogoutOutlined} from '@ant-design/icons';
 import "./HomePage.css"
 import {withRouter} from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import ThemeSwitch from "../Components/ThemeSwitch/ThemeSwitch";
 import {connect} from "react-redux";
+import {logoutAction} from "../Actions/usersActions";
 
 
 const { Sider,  Header } = Layout;
@@ -37,7 +38,6 @@ function SideMenuPage(props) {
         >
             <div className="logo"/>
             <Menu mode="inline" defaultSelectedKeys={['2']}>
-                <Header className="site-layout-sub-header-background" style={{padding: 0}}/>
                 <Menu.Item key="1"
                            icon={<UserOutlined/>}
                            onClick={() => {history.push({
@@ -46,6 +46,8 @@ function SideMenuPage(props) {
                 >
                     המידע שלי
                 </Menu.Item>
+
+
                 <Menu.Item key="2" icon={<UnorderedListOutlined/>}
                            onClick={() => {history.push({
                                pathname: `/`,});
@@ -59,6 +61,10 @@ function SideMenuPage(props) {
                 >
                     היסטוריה
                 </Menu.Item>
+
+                <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={props.logout}>
+                        התנתק- לא עובד
+                    </Menu.Item>
 
                 {/* DARK MODE SWITCH*/}
                 <div style={{display: 'flex',
@@ -75,6 +81,15 @@ function SideMenuPage(props) {
 const mapStateToProps = state => {
     return {
         darkMode: state.sitesReducer.darkMode
+
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => {
+            dispatch(logoutAction());
+        },
 
     }
 };
