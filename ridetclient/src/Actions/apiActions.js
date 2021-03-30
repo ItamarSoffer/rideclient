@@ -3,7 +3,7 @@ import {backendAPI} from "../Structure/api";
 
 
 export const apiLogin = (username, password) => {
-    const userLoginApi = backendAPI.concat(`/login`);
+    const userLoginApi = backendAPI.concat(`/users/login`);
     return axios.post(userLoginApi,
         {
             "username": username,

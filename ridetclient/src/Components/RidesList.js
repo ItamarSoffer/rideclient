@@ -74,7 +74,7 @@ export default function RidesList(props) {
     // TODO: change data to rideInstances in the dataSource
     return (
         <>
-            <Table pagination={false} columns={columns} dataSource={data}/>
+            <Table pagination={false} columns={columns} dataSource={rideInstances}/>
         </>
     );
 };

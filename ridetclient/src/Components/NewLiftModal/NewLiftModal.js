@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Modal, Button, Form, DatePicker, TimePicker, ConfigProvider, Input, Radio } from 'antd';
 import CitySelect from "../loginForm/CitySelect/CitySelect";
+import {apiNewLift} from "../../Actions/apiActions";
 
 const {Text} = Typography;
 
@@ -34,6 +35,8 @@ const NewLiftModal = () => {
     };
 
     const onFinish = values => {
+        apiNewLift("token", values.datetime.format('YYYY-MM-DD HH:mm'), rideSeats, cityId, values.comments);
+
         console.log("FINISH", values);
         console.log("Seats", rideSeats);
 
@@ -86,22 +89,22 @@ const NewLiftModal = () => {
                             <Form.Item
                                 className="link-form"
                                 //label="תאריך"
-                                name="date"
+                                name="datetime"
                                 rules={[{
                                     required: true,
                                     message: 'Event date' }]}
                             >
-                                <DatePicker autoComplete='off' placeholder={"תאריך"}
+                                <DatePicker showTime autoComplete='off' placeholder={"תאריך"}
                                 />
                             </Form.Item>
-                            <Form.Item
-                                className="link-form"
-                                //label="שעה"
-                                name="hour"
-                            >
-                                <TimePicker autoComplete='off' placeholder={"שעה"} format={'HH:mm'}
-                                />
-                            </Form.Item>
+                            {/*<Form.Item*/}
+                            {/*    className="link-form"*/}
+                            {/*    //label="שעה"*/}
+                            {/*    name="hour"*/}
+                            {/*>*/}
+                            {/*    <TimePicker autoComplete='off' placeholder={"שעה"} format={'HH:mm'}*/}
+                            {/*    />*/}
+                            {/*</Form.Item>*/}
 
                             <Form.Item
                                 className="link-form"
@@ -132,7 +135,7 @@ const NewLiftModal = () => {
 
                             <Form.Item
                                 className="link-form"
-                                name="text"
+                                name="comments"
                                 rules={[{
                                     message: 'Event content' }]}
                             >
