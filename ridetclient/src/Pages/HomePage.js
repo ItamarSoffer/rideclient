@@ -53,10 +53,11 @@ export default function HomePage() {
                 >
                     <div className="logo"/>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
+                        <Header className="site-layout-sub-header-background" style={{padding: 0}}/>
                         <Menu.Item key="1" icon={<UserOutlined/>}>
                             My Info
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<UnorderedListOutlined />}>
+                        <Menu.Item key="2" icon={<UnorderedListOutlined/>}>
                             All Rides
                         </Menu.Item>
                     </Menu>
@@ -72,14 +73,12 @@ export default function HomePage() {
                             />
                         </div>
                     </Content>
-                    <Footer style={{textAlign: 'center'}}>kakas C ©2021</Footer>
                 </Layout>
             </Layout>
-            <Tooltip title={"New Ride"}>
-                <Button style={{float: "right"}} type="primary" shape="round" icon={<PlusOutlined/>} size={"large"}>
-                    New Ride
-                </Button>
-            </Tooltip>
+            <Footer style={{textAlign: 'center'}}>kakas C ©2021</Footer>
+            <Button style={{float: "right"}} type="primary" shape="round" icon={<PlusOutlined/>} size={"large"}>
+                New Ride
+            </Button>
         </>
     )
 }
