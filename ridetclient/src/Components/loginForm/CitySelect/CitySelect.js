@@ -14,8 +14,10 @@ const CitySelect = (props) =>{
 
 
     useEffect(() => {
-        apiGetCities().then(res => res.data)
-            .then((results) => setData({cities: results.cities}))
+        apiGetCities()
+            // .then(res => res.data)
+            // .then((results) => setData({cities: results.cities}))
+            .then((results) => setData({cities: results}))
             .then(() => setIsFetched(true))
     }, []);
 

@@ -4,23 +4,23 @@ import {UserAddOutlined} from "@ant-design/icons";
 const columns = [
     {
         title: 'שם מלא',
-        dataIndex: 'name',
+        dataIndex: 'full_name',
     },
     {
         title: 'עיר יעד',
-        dataIndex: 'destination',
+        dataIndex: 'city_name',
     },
     {
         title: 'שעת יציאה',
-        dataIndex: 'departure_time',
-        key: 'departure_time',
+        dataIndex: 'ride_time',
+        key: 'ride_time',
         sorter: (a, b) => Date.parse(a) - Date.parse(b),
         sortOrder: (info) => info.columnKey === 'departure_time' && info.order,
         ellipsis: true,
     },
     {
         title: 'מקומות פנויים',
-        dataIndex: 'available_seats',
+        dataIndex: 'seats',
     },
     {
         title: 'הערות',
