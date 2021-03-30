@@ -9,11 +9,20 @@ const { TextArea } = Input;
 
 
 const NewLiftModal = () => {
+    const formRef = React.createRef();
+
+
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [rideSeats, setRideSeats] = useState();
+    const [cityId, setcityId] = useState();
 
     const showModal = () => {
         setIsModalVisible(true);
+    };
+
+    const onReset = () => {
+        // console.log("RESET");
+        formRef.current.resetFields();
     };
 
     const handleOk = () => {
@@ -28,11 +37,19 @@ const NewLiftModal = () => {
         console.log("FINISH", values);
         console.log("Seats", rideSeats);
 
+        onReset();
+
+
 
     };
 
     const onFinishFailed = () => {
         console.log("ERROR")
+    };
+
+    const handleCityChange = value => {
+        setcityId(value);
+        console.log("Selected city", value)
     };
 
     return (
@@ -63,7 +80,7 @@ const NewLiftModal = () => {
                         id={"add_lift"}
                         onFinish={onFinish}
                         onFinishFailed={onFinishFailed}
-                        // ref={this.formRef}
+                        ref={formRef}
                     >
                         <div>
                             <Form.Item
@@ -74,9 +91,7 @@ const NewLiftModal = () => {
                                     required: true,
                                     message: 'Event date' }]}
                             >
-                                {/* TODO: onDateChange */}
                                 <DatePicker autoComplete='off' placeholder={"תאריך"}
-                                    // onChange={onDateChange}
                                 />
                             </Form.Item>
                             <Form.Item
@@ -84,7 +99,6 @@ const NewLiftModal = () => {
                                 //label="שעה"
                                 name="hour"
                             >
-                                {/* TODO: onTimeChange */}
                                 <TimePicker autoComplete='off' placeholder={"שעה"} format={'HH:mm'}
                                 />
                             </Form.Item>
@@ -98,7 +112,6 @@ const NewLiftModal = () => {
                                 <br/>
                                 <Radio.Group onChange={(e) => {setRideSeats(e.target.value)}}
 
-                                    // onChange={onCarSeatsChange}
                                 >
 
                                     <Radio.Button value="1">1</Radio.Button>
@@ -109,13 +122,12 @@ const NewLiftModal = () => {
                                 </Radio.Group>
                             </Form.Item>
 
+
                             <Form.Item
                                 className="link-form"
                                 name="dst_city"
                             >
-                                <Input placeholder={"עיר יעד"} autoComplete='off' />
-
-                                {/*<CitySelect/>*/}
+                                <CitySelect handleCityChange={handleCityChange} />
                             </Form.Item>
 
                             <Form.Item

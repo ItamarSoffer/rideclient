@@ -11,3 +11,9 @@ export const apiLogin = (username, password) => {
         })
 
 };
+
+export const apiGetCities = () => {
+    const userLoginApi = backendAPI.concat(`/cities`);
+    return axios.post(userLoginApi)
+
+};
