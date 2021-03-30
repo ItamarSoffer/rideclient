@@ -30,7 +30,7 @@ const columns = [
         title: 'פעולות נוספות',
         dataIndex: 'action',
         render: () => (
-            <Tooltip title={"Assign to ride"}>
+            <Tooltip title={"הירשם לטרמפ"}>
                 <UserAddOutlined onClick={() => {
                     console.log("pressed")
                 }}/>

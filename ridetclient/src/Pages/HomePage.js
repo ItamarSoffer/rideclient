@@ -13,7 +13,7 @@ async function getRides(page, searchParams = {}) {
         // TODO: use API and return rides list
         return []
     } catch (e) {
-        notification.error({message: "Error", description: "Failed to load rides instances' data"});
+        notification.error({message: "Error", description: "נכשל בהעלאת הטרמפים"});
         return [];
     }
 }
