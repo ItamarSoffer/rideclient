@@ -32,6 +32,7 @@ const CitySelect = (props) =>{
                 style={{width: 150}}
                 onChange={value => props.handleCityChange(value)}
                 optionFilterProp='cityName'
+                defaultValue={props.defaultCity ? props.defaultCity: null}
             >
                 {
                     data.cities.map(
