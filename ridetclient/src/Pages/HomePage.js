@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Button, notification, Layout, ConfigProvider } from "antd";
+import {Button, notification, Layout, ConfigProvider} from "antd";
 import RidesList from "../Components/RidesList";
 import {PlusOutlined} from '@ant-design/icons';
 import "./HomePage.css"
 import SideMenuPage from './SideMenuPage'
 
-const { Content, Footer} = Layout;
+const {Content, Footer} = Layout;
 
 
 async function getRides(page, searchParams = {}) {
@@ -43,11 +43,8 @@ export default function HomePage() {
     return (
         <ConfigProvider direction="rtl">
 
-            <Layout
-                style={{ minHeight: '100vh' }}
-
-            >
-               <SideMenuPage/>
+            <Layout style={{minHeight: '100vh'}}>
+                <SideMenuPage selectedTab={['2']}/>
                 <Layout>
                     {/*<Header className="site-layout-sub-header-background" style={{padding: 0}}/>*/}
                     <Content style={{margin: '24px 16px 0'}}>
@@ -60,8 +57,8 @@ export default function HomePage() {
                         </div>
                     </Content>
                     <Footer style={{textAlign: 'center'}}>Kakas C ©2021</Footer>
-
-                    <Button style={{float: "right", width: '150px'}} type="primary" shape="round" icon={<PlusOutlined/>} size={"large"}>
+                    <Button style={{float: "right", width: '150px'}} type="primary" shape="round" icon={<PlusOutlined/>}
+                            size={"large"}>
                         New Ride
                     </Button>
                 </Layout>
