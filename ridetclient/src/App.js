@@ -4,6 +4,7 @@ import React from "react";
 import 'antd/dist/antd.css';
 import {connect} from 'react-redux';
 import {ThemeSwitcherProvider} from "react-css-theme-switcher";
+import {checkJwt} from "./Actions/jwtActions";
 
 const themes = {
     dark: `${process.env.PUBLIC_URL}/themes/dark-theme.css`,
