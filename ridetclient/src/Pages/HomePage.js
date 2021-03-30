@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Menu, notification, Tooltip, Layout, ConfigProvider } from "antd";
+import {Button, notification, Layout, ConfigProvider } from "antd";
 import RidesList from "../Components/RidesList";
-import {UserOutlined, PlusOutlined, UnorderedListOutlined} from '@ant-design/icons';
+import {PlusOutlined} from '@ant-design/icons';
 import "./HomePage.css"
 import SideMenuPage from './SideMenuPage'
 
-const { Sider, Content, Footer, Header } = Layout;
+const { Content, Footer} = Layout;
 
 
 async function getRides(page, searchParams = {}) {
@@ -51,7 +51,7 @@ export default function HomePage() {
                 <Layout>
                     {/*<Header className="site-layout-sub-header-background" style={{padding: 0}}/>*/}
                     <Content style={{margin: '24px 16px 0'}}>
-                        <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
+                        <div style={{padding: 24, minHeight: 360}}>
                             <RidesList
                                 loading={loading}
                                 handleLoadMore={loadRideInstances}

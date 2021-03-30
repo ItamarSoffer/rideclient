@@ -3,15 +3,15 @@ import {UserAddOutlined} from "@ant-design/icons";
 
 const columns = [
     {
-        title: 'Name',
+        title: 'שם מלא',
         dataIndex: 'name',
     },
     {
-        title: 'Destination',
+        title: 'עיר יעד',
         dataIndex: 'destination',
     },
     {
-        title: 'Departure Time',
+        title: 'שעת יציאה',
         dataIndex: 'departure_time',
         key: 'departure_time',
         sorter: (a, b) => Date.parse(a) - Date.parse(b),
@@ -19,11 +19,11 @@ const columns = [
         ellipsis: true,
     },
     {
-        title: 'Available Seats',
+        title: 'מקומות פנויים',
         dataIndex: 'available_seats',
     },
     {
-        title: '',
+        title: 'פעולות נוספות',
         dataIndex: 'action',
         render: () => (
             <Tooltip title={"Assign to ride"}>
@@ -49,7 +49,7 @@ const data = [
         departure_time: "2021-03-30T14:32:33+03:00",
         available_seats: 2
     }
-]
+];
 
 export default function RidesList(props) {
     const {rideInstances} = props;
