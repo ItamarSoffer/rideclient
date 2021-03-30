@@ -23,6 +23,10 @@ const columns = [
         dataIndex: 'available_seats',
     },
     {
+        title: 'הערות',
+        dataIndex: 'notes',
+    },
+    {
         title: 'פעולות נוספות',
         dataIndex: 'action',
         render: () => (
@@ -40,19 +44,32 @@ const data = [
         name: 'John Brown',
         destination: 'New York',
         departure_time: "2021-03-30T16:32:33+03:00",
-        available_seats: 1
+        available_seats: 1,
+        notes: "דרך כביש 4"
     },
     {
         key: '2',
         name: 'John Brown2',
         destination: 'New York2',
         departure_time: "2021-03-30T14:32:33+03:00",
-        available_seats: 2
+        available_seats: 2,
+        notes: "דברים לא חשובים"
     }
 ];
 
 export default function RidesList(props) {
     const {rideInstances} = props;
+
+    // TODO: delete the loop - only for testing large amount of data
+    const row = data[0];
+    let i;
+    for (i = 3; i < 50; i++) {
+        let newRow = {};
+        Object.assign(newRow, row)
+        newRow["key"] = i
+        data.push(newRow)
+        console.log(data)
+    }
 
     // TODO: change data to rideInstances in the dataSource
     return (
