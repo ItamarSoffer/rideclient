@@ -5,6 +5,7 @@ import {apiNewLift} from "../../Actions/apiActions";
 import { connect } from 'react-redux';
 import {checkJwt} from "../../Actions/jwtActions";
 import {withRouter} from "react-router";
+import {controlNewRideModalAction} from "../../Actions/ModalsActions";
 
 const {Text} = Typography;
 
@@ -30,18 +31,21 @@ const NewLiftModal = (props) => {
     };
 
     const handleOk = () => {
-        setIsModalVisible(false);
+                props.hideNewRideModal();
+
     };
 
     const handleCancel = () => {
-        setIsModalVisible(false);
+                props.hideNewRideModal();
+
+
     };
 
     const onFinish = values => {
 
         // console.log(props.jwtToken, values.datetime.format('YYYY-MM-DD HH:mm'), rideSeats, cityId, values.comments);
         apiNewLift(props.jwtToken, values.datetime.format('YYYY-MM-DD HH:mm'), rideSeats, cityId, values.comments)
-        .then((response) => {
+            .then((response) => {
                 if (response.status ===! 200){
                     message.warning(response.data)
                 }
@@ -52,7 +56,7 @@ const NewLiftModal = (props) => {
             onReset();
         });
     };
-        // onReset();
+    // onReset();
 
 
 
@@ -67,13 +71,13 @@ const NewLiftModal = (props) => {
 
     return (
         <>
-            <Button type="primary" onClick={showModal}>
-                Open Modal
-            </Button>
+            {/*<Button type="primary" onClick={showModal}>*/}
+            {/*    Open Modal*/}
+            {/*</Button>*/}
 
             <ConfigProvider direction="rtl">
                 <Modal title="טרמפ חדש"
-                       visible={isModalVisible}
+                       visible={props.showNewRideModal}
                        onOk={handleOk}
                        onCancel={handleCancel}
                        footer=
@@ -165,9 +169,17 @@ const NewLiftModal = (props) => {
 const mapStateToProps = state => {
     return {
         jwtToken: state.usersReducer.jwtToken,
+        showNewRideModal: state.modalsReducer.showNewRideModal,
+
 
     }
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        hideNewRideModal: () => {dispatch(controlNewRideModalAction(false))},
 
-export default connect(mapStateToProps, null)(NewLiftModal);
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewLiftModal);
