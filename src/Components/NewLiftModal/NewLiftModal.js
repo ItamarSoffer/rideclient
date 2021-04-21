@@ -28,6 +28,8 @@ const NewLiftModal = (props) => {
     const onReset = () => {
         // console.log("RESET");
         formRef.current.resetFields();
+        props.hideNewRideModal();
+
     };
 
     const handleOk = () => {
@@ -43,7 +45,7 @@ const NewLiftModal = (props) => {
 
     const onFinish = values => {
 
-        // console.log(props.jwtToken, values.datetime.format('YYYY-MM-DD HH:mm'), rideSeats, cityId, values.comments);
+        console.log(props.jwtToken, values.datetime.format('YYYY-MM-DD HH:mm'), rideSeats, cityId, values.comments);
         apiNewLift(props.jwtToken, values.datetime.format('YYYY-MM-DD HH:mm'), rideSeats, cityId, values.comments)
             .then((response) => {
                 if (response.status ===! 200){
@@ -54,6 +56,7 @@ const NewLiftModal = (props) => {
                 }
             }).then(() => {
             onReset();
+        //    TODO: FETCH new data
         });
     };
     // onReset();

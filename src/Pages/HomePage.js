@@ -13,8 +13,8 @@ import {checkJwt} from "../Actions/jwtActions";
 import {controlNewRideModalAction} from "../Actions/ModalsActions";
 import modalsReducer from "../Reducers/modalsReducer";
 import NewLiftModal from "../Components/NewLiftModal/NewLiftModal";
-
-
+import carImage from "./BackgroundImages/carsharing.png";
+import {getQueryStringParams} from "../Actions/queryStringActions";
 
 
 const {Content, Footer} = Layout;
@@ -56,6 +56,7 @@ function HomePage(props) {
         return history.listen((location) => {
             if (location.pathname === '/'){
                 setIsLoaded(false);
+
                 loadData();
                 // TODO: if the location has not changed- no (click on the menu)
             }
@@ -67,20 +68,31 @@ function HomePage(props) {
     }, []);
 
     const loadData =() => {
+        const queryParams = getQueryStringParams(history.location.search);
+        console.log("PARAMS", JSON.stringify(queryParams));
+        // TODO: add filters query
         apiGetRides()
             .then((results) => (setRideInstances(results)) )
             .then(() => setIsLoaded(true));
-    }
+    };
 
     return (
         <ConfigProvider direction="rtl">
 
             <Layout style={{minHeight: '100vh'}}>
                 <SideMenuPage selectedTab={['2']}/>
-                <Layout>
+                <Layout
+                    style={{
+                    backgroundImage: `url(${carImage})`,
+                }}
+                >
                     {/*<Header className="site-layout-sub-header-background" style={{padding: 0}}/>*/}
-                    <Content style={{margin: '24px 16px 0'}}>
-                        <div style={{padding: 24, minHeight: 360}}>
+                    <Content style={{margin: '24px 16px 0',
+
+
+                    }}
+                    >
+                        <div style={{padding: 24, minHeight: 360, }}>
                             <RidesFilter/>
                             <br/>
                             <br/>
@@ -94,7 +106,7 @@ function HomePage(props) {
                             }
                         </div>
                     </Content>
-                    <Footer style={{textAlign: 'center'}}>Kakas C ©2021</Footer>
+                    {/*<Footer style={{textAlign: 'center'}}>Kakas C ©2021</Footer>*/}
                     <Button style={{float: "right", width: '150px'}}
                             type="primary"
                             shape="round"
@@ -127,4 +139,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomePage));
